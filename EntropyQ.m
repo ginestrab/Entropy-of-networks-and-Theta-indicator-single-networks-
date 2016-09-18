@@ -4,7 +4,7 @@
 %This program evaluates the entropy of networks with given class assignment (type)
 % The input of the program is a square adjacency matrix m of dimension n
 % and a vector of dimension n describing the assignment type(i)=q
-% size(type)=n,1
+% size(type)=1,n
 % with q integer between 1 and Q identifying Q classes 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The output of the program is the entropy Sigmac  
@@ -93,7 +93,6 @@ M=log( ones(n,n) + ( (z*z').*W(type,type) ) ) ;
 
 z=z+0*(und==0);
 Sc=(1/n)*( - sum(log(z+(z==0)).*und) - sum(sum( triu(A.* log(W+(W==0)) ) )) + sum(sum( triu( M,1) )) );
-Sc=Sc-(1/n)*(0.5*sum(log(2*pi*und+(und==0)))-0.5*sum(sum(triu(log(2*pi*A+(A==0))))));
 
    if kk>150&&max(max(abs(Sc-Scold)))<precision 
        break
@@ -107,7 +106,6 @@ M=log( ones(n,n) + ( (z*z').*W(type,type) ) ) ;
 
 z=z+0*(und==0);
 Sc=(1/n)*( - sum(log(z+(z==0)).*und) - sum(sum( triu(A.* log(W+(W==0)) ) )) + sum(sum( triu( M,1) )) );
-Sc=Sc-(1/n)*(0.5*sum(log(2*pi*und+(und==0))))-0.5*sum(sum(triu(log(2*pi*A+(A==0))))));
 Sigmac=Sc;
 
 
